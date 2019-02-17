@@ -1,0 +1,24 @@
+{
+  "ingredients": [
+    {
+      "title": "Ham",
+      "best-before": "%s",
+      "use-by": "%s"
+    },
+    {
+      "title": "Cheese",
+      "best-before": "%s",
+      "use-by": "%s"
+    },
+    {
+      "title": "Bread",
+      "best-before": "%s",
+      "use-by": "%s"
+    },
+    {
+      "title": "Butter",
+      "best-before": "%s",
+      "use-by": "%s"
+    }
+  ]
+}

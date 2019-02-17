@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 public class TestDataContainer {
 
-    private static final LocalDate TODAY = LocalDate.now();
-    private static final LocalDate YESTERDAY = TODAY.minusDays(1);
+    public static final LocalDate TODAY = LocalDate.now();
+    public static final LocalDate YESTERDAY = TODAY.minusDays(1);
     private static final LocalDate TOMORROW = TODAY.plusDays(1);
     private static final LocalDate DAY_AFTER_TOMORROW = TODAY.plusDays(2);
 

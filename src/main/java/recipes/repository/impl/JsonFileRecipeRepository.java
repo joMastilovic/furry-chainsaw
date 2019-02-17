@@ -10,6 +10,7 @@ import recipes.model.Recipe;
 import recipes.repository.RecipeRepository;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,16 +19,14 @@ import java.util.List;
 public class JsonFileRecipeRepository implements RecipeRepository {
 
     private final ObjectMapper objectMapper;
-    private final String recipesResource;
+    private final InputStream recipesInputStream;
 
     @Override
     public Collection<Recipe> getAll() {
         try {
-            return objectMapper.readValue(
-                getClass().getResourceAsStream(recipesResource), JsonRecipesContainer.class
-            ).recipes;
+            return objectMapper.readValue(recipesInputStream, JsonRecipesContainer.class).recipes;
         } catch (IOException e) {
-            throw new JsonRepositoryException(recipesResource, e);
+            throw new JsonRepositoryException(recipesInputStream.toString(), e);
         }
     }
 

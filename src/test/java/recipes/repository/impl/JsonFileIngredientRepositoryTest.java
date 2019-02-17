@@ -7,6 +7,8 @@ import org.junit.platform.commons.util.StringUtils;
 import recipes.model.Ingredient;
 import recipes.repository.IngredientRepository;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
@@ -19,9 +21,8 @@ import static recipes.testData.TestDataContainer.YESTERDAY;
 
 class JsonFileIngredientRepositoryTest {
 
-    private static final String INGREDIENTS_JSON = "/ingredients.json";
     private static final String INGREDIENT_TEMPLATE_JSON = TEST_RESOURCES + "/ingredientsTemplate.json";
-    private static final String INGREDIENTS_WITH_DATES_FILLED_IN_JSON = TEST_RESOURCES + INGREDIENTS_JSON;
+    private static final String INGREDIENTS_JSON = TEST_RESOURCES + "/testIngredients.json";
 
     @BeforeEach
     void setUp() throws IOException {
@@ -29,15 +30,15 @@ class JsonFileIngredientRepositoryTest {
         String fileContentWithDatesFilledIn = String.format(templateFileContent,
             TODAY, TODAY, TODAY, TODAY, TODAY, TODAY, YESTERDAY, YESTERDAY
         );
-        try (PrintWriter out = new PrintWriter(INGREDIENTS_WITH_DATES_FILLED_IN_JSON)) {
+        try (PrintWriter out = new PrintWriter(INGREDIENTS_JSON)) {
             out.println(fileContentWithDatesFilledIn);
         }
     }
 
     @Test
-    void getAllNotExpired() {
+    void getAllNotExpired() throws FileNotFoundException {
         IngredientRepository jsonFileIngredientRepository =
-            new JsonFileIngredientRepository(objectMapper(), INGREDIENTS_JSON);
+            new JsonFileIngredientRepository(objectMapper(), new FileInputStream(INGREDIENTS_JSON));
 
         Collection<Ingredient> allNotExpired = jsonFileIngredientRepository.getAllNotExpired();
 

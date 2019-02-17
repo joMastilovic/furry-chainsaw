@@ -19,15 +19,16 @@ import java.util.Arrays;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 import static recipes.TestUtils.TEST_RESOURCES;
+import static recipes.config.E2eTestDataConfig.E2E_INGREDIENTS;
 
 @SpringBootTest(classes = {Application.class, E2eTestDataConfig.class})
 @ActiveProfiles("e2eTest")
 public class EndToEndTest {
 
+    private static final String E2E_INGREDIENTS_TEMPLATE = TEST_RESOURCES + "/e2eIngredientsTemplate.json";
+
     @Autowired
     private LunchRetrieveController lunchRetrieveController;
-    @Autowired
-    private String ingredientsResource;
 
     private MockMvc mockMvc;
 
@@ -62,10 +63,10 @@ public class EndToEndTest {
             .map(integer -> LocalDate.now().plusDays(integer))
             .toArray(LocalDate[]::new);
 
-        String templateFileContent = TestUtils.readFileAsString(TEST_RESOURCES + "/e2eIngredientsTemplate.json");
+        String templateFileContent = TestUtils.readFileAsString(E2E_INGREDIENTS_TEMPLATE);
         String fileContentWithDatesFilledIn = String.format(templateFileContent, datesToFillTemplateWith);
 
-        try (PrintWriter out = new PrintWriter(TEST_RESOURCES + ingredientsResource)) {
+        try (PrintWriter out = new PrintWriter(E2E_INGREDIENTS)) {
             out.println(fileContentWithDatesFilledIn);
         }
     }

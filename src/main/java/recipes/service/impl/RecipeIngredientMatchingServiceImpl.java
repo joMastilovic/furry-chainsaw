@@ -1,5 +1,6 @@
 package recipes.service.impl;
 
+import org.springframework.stereotype.Component;
 import recipes.helper.RecipeContainer;
 import recipes.model.Ingredient;
 import recipes.model.Recipe;
@@ -10,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class RecipeIngredientMatchingServiceImpl implements RecipeIngredientMatchingService {
 
     @Override

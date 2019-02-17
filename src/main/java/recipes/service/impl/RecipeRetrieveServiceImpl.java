@@ -1,6 +1,7 @@
 package recipes.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import recipes.helper.RecipeContainer;
 import recipes.model.Ingredient;
 import recipes.model.Recipe;
@@ -14,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class RecipeRetrieveServiceImpl implements RecipeRetrieveService {
 
     private final IngredientRepository ingredientRepository;

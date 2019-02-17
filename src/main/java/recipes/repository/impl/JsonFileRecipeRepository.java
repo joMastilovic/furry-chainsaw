@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import recipes.exception.JsonRepositoryException;
 import recipes.model.Recipe;
 import recipes.repository.RecipeRepository;
@@ -13,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class JsonFileRecipeRepository implements RecipeRepository {
 
     private final ObjectMapper objectMapper;

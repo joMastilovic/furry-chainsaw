@@ -69,4 +69,8 @@ public class TestDataContainer {
         return 0;
     };
 
+    public static Ingredient getIngredientByTitle(String ingredient) {
+        return TITLE_INGREDIENT_MAP.get(ingredient);
+    }
+
 }

@@ -13,4 +13,8 @@ public class Ingredient {
     private final LocalDate useBy;
     private final LocalDate bestBefore;
 
+    public boolean isFresh() {
+        return LocalDate.now().isBefore(bestBefore);
+    }
+
 }
